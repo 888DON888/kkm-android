@@ -1,0 +1,25 @@
+# Gradle
+.gradle/
+build/
+*.gradle.kts.dsl.cache
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+.DS_Store
+captures/
+
+# Compiled
+app/build/
+*.apk
+*.aab
+*.jks
+
+# Security
+**/google-services.json
+**/*.p12
+**/keystore.properties
+
+# Logs
+*.log
