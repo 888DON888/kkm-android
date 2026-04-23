@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- Never backup the encrypted database or keys -->
+    <exclude domain="database" path="kkm_fiscal.db" />
+    <exclude domain="sharedpref" path="kkm_secure_prefs.xml" />
+    <exclude domain="sharedpref" path="kkm_fiscal_keys.xml" />
+</full-backup-content>
