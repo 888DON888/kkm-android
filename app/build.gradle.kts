@@ -30,7 +30,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Certificate pinning — replace with real OFD + ISNA pins
+            // Certificate pinning â replace with real OFD + ISNA pins
             buildConfigField("String", "OFD_BASE_URL", "\"https://ofd.kgd.gov.kz/api/v2/\"")
             buildConfigField("String", "ISNA_BASE_URL", "\"https://is.kgd.gov.kz/api/v1/\"")
             buildConfigField("String", "OFD_PIN_SHA256", "\"sha256/REPLACE_WITH_REAL_OFD_CERT_HASH=\"")
@@ -82,6 +82,8 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.hilt.work)
+    ksp(libs.hilt.compiler)
 
     // Room + SQLCipher
     implementation(libs.room.runtime)
