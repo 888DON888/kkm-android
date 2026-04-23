@@ -7,7 +7,7 @@
     </style>
     <style name="Theme.KKM.SplashScreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">#1A5276</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_launcher</item>
         <item name="postSplashScreenTheme">@style/Theme.KKM</item>
     </style>
 </resources>
