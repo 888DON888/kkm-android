@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ҚКМ Онлайн касса</string>
+
+    <!-- Auth -->
+    <string name="auth_title">Вход в систему</string>
+    <string name="auth_enter_pin">Введите PIN-код</string>
+    <string name="auth_wrong_pin">Неверный PIN-код</string>
+    <string name="auth_biometric">Биометрический вход</string>
+
+    <!-- Shift -->
+    <string name="shift_open">Открыть смену</string>
+    <string name="shift_close">Закрыть смену</string>
+    <string name="shift_number">Смена №%d</string>
+    <string name="no_open_shift">Нет открытой смены</string>
+
+    <!-- Receipt -->
+    <string name="receipt_number">Чек №%d</string>
+    <string name="receipt_total">ИТОГО</string>
+    <string name="receipt_payment_cash">Наличные</string>
+    <string name="receipt_payment_card">Безналичная</string>
+    <string name="receipt_change">Сдача</string>
+
+    <!-- Cart -->
+    <string name="cart_empty">Корзина пуста</string>
+    <string name="cart_add_item">Добавить товар</string>
+    <string name="cart_total">Итого к оплате</string>
+
+    <!-- Tax 910 -->
+    <string name="tax910_title">Декларация 910.00</string>
+    <string name="tax910_period">Период</string>
+    <string name="tax910_income">Доход</string>
+    <string name="tax910_employees">Работники</string>
+    <string name="tax910_submit">Отправить в ИСНА</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_org">Организация</string>
+    <string name="settings_ofd">Настройки ОФД</string>
+    <string name="settings_language">Язык</string>
+    <string name="settings_security">Безопасность</string>
+
+    <!-- Common -->
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="save">Сохранить</string>
+    <string name="back">Назад</string>
+    <string name="loading">Загрузка…</string>
+    <string name="error_generic">Произошла ошибка</string>
+    <string name="currency_symbol">₸</string>
+</resources>
