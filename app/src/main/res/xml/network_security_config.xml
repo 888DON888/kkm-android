@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Deny cleartext for all domains -->
+    <base-config cleartextTrafficPermitted="false">
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </base-config>
+
+    <!-- OFD pin (replace hash with actual cert hash) -->
+    <domain-config>
+        <domain includeSubdomains="true">ofd.kgd.gov.kz</domain>
+        <pin-set expiration="2026-12-31">
+            <!-- sha256/REPLACE_WITH_REAL_OFD_CERT_HASH= -->
+            <pin digest="SHA-256">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</pin>
+        </pin-set>
+    </domain-config>
+
+    <!-- ISNA pin -->
+    <domain-config>
+        <domain includeSubdomains="true">is.kgd.gov.kz</domain>
+        <pin-set expiration="2026-12-31">
+            <!-- sha256/REPLACE_WITH_REAL_ISNA_CERT_HASH= -->
+            <pin digest="SHA-256">AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</pin>
+        </pin-set>
+    </domain-config>
+
+    <!-- NCA RK cloud signing -->
+    <domain-config>
+        <domain includeSubdomains="true">pki.gov.kz</domain>
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </domain-config>
+
+    <!-- Test domains - debug only -->
+    <domain-config>
+        <domain includeSubdomains="true">test.ofd.kgd.gov.kz</domain>
+        <domain includeSubdomains="true">test.is.kgd.gov.kz</domain>
+        <trust-anchors>
+            <certificates src="system"/>
+            <certificates src="user"/>
+        </trust-anchors>
+    </domain-config>
+</network-security-config>
