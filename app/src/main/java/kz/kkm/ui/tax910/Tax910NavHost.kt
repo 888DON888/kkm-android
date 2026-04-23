@@ -20,12 +20,12 @@ fun Tax910NavHost(onBack: () -> Unit) {
         // List of existing periods + create new
         composable("tax910_list") {
             Tax910ListScreen(
-                onOpenPeriod  = { id -> nav.navigate("tax910_step1/$id") },
-                onBack        = onBack
+                onStartNew = { id -> nav.navigate("tax910_step1/$id") },
+                onBack     = onBack
             )
         }
 
-        // Step 1 – Income summary (auto-loaded from KKM)
+        // Step 1 â Income summary (auto-loaded from KKM)
         composable(
             "tax910_step1/{periodId}",
             arguments = listOf(navArgument("periodId") { type = NavType.LongType })
@@ -38,7 +38,7 @@ fun Tax910NavHost(onBack: () -> Unit) {
             )
         }
 
-        // Step 2 – Employees & payroll calculation
+        // Step 2 â Employees & payroll calculation
         composable(
             "tax910_step2/{periodId}",
             arguments = listOf(navArgument("periodId") { type = NavType.LongType })
@@ -51,7 +51,7 @@ fun Tax910NavHost(onBack: () -> Unit) {
             )
         }
 
-        // Step 3 – Summary of form 910.00 lines
+        // Step 3 â Summary of form 910.00 lines
         composable(
             "tax910_step3/{periodId}",
             arguments = listOf(navArgument("periodId") { type = NavType.LongType })
@@ -64,7 +64,7 @@ fun Tax910NavHost(onBack: () -> Unit) {
             )
         }
 
-        // Step 4 – Sign (cloud EDS NCA RK) and submit to ISNA
+        // Step 4 â Sign (cloud EDS NCA RK) and submit to ISNA
         composable(
             "tax910_step4/{periodId}",
             arguments = listOf(navArgument("periodId") { type = NavType.LongType })
