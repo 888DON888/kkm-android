@@ -10,15 +10,18 @@ local.properties
 .DS_Store
 captures/
 
-# Compiled
+# Compiled / generated
 app/build/
+app/schemas/
 *.apk
 *.aab
+*.keystore
 *.jks
 
-# Security
+# Security — NEVER commit real keys or certificates
 **/google-services.json
 **/*.p12
+**/*.pfx
 **/keystore.properties
 
 # Logs
