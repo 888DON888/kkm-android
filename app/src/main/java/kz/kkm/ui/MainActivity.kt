@@ -19,7 +19,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
 import kz.kkm.ui.auth.AuthScreen
-import kz.kkm.ui.auth.PinSetupScreen
 import kz.kkm.ui.catalog.CatalogScreen
 import kz.kkm.ui.main.MainScreen
 import kz.kkm.ui.receipt.PaymentScreen
@@ -32,7 +31,7 @@ import kz.kkm.ui.shift.ShiftScreen
 import kz.kkm.ui.tax910.Tax910NavHost
 import kz.kkm.ui.theme.KkmTheme
 
-// ─────────────────── Routes ───────────────────────────────────
+// âââââââââââââââââââ Routes âââââââââââââââââââââââââââââââââââ
 
 object Routes {
     const val AUTH            = "auth"
@@ -52,7 +51,7 @@ object Routes {
     fun receiptDetail(id: Long) = "receipt_detail/$id"
 }
 
-// ─────────────────── Activity ─────────────────────────────────
+// âââââââââââââââââââ Activity âââââââââââââââââââââââââââââââââ
 
 @AndroidEntryPoint
 class MainActivity : FragmentActivity() {
@@ -75,26 +74,22 @@ class MainActivity : FragmentActivity() {
     }
 }
 
-// ─────────────────── Nav Graph ────────────────────────────────
+// âââââââââââââââââââ Nav Graph ââââââââââââââââââââââââââââââââ
 
 @Composable
 fun KkmNavHost(nav: NavHostController) {
     NavHost(nav, startDestination = Routes.AUTH) {
 
-        // ── Auth ──────────────────────────────────────────────
+        // ââ Auth ââââââââââââââââââââââââââââââââââââââââââââââ
         composable(Routes.AUTH) {
             AuthScreen(
-                onAuthenticated    = { nav.navigate(Routes.MAIN) { popUpTo(Routes.AUTH) { inclusive = true } } },
-                onPinSetupRequired = { nav.navigate(Routes.PIN_SETUP) }
+                onAuthenticated    = { nav.navigate(Routes.MAIN) { popUpTo(Routes.AUTH) { inclusive = true } } }
             )
         }
-        composable(Routes.PIN_SETUP) {
-            PinSetupScreen(onSetupComplete = {
-                nav.navigate(Routes.MAIN) { popUpTo(Routes.AUTH) { inclusive = true } }
             })
         }
 
-        // ── Main Cash Register ────────────────────────────────
+        // ââ Main Cash Register ââââââââââââââââââââââââââââââââ
         composable(Routes.MAIN) {
             MainScreen(
                 onNavigateToPayment  = { nav.navigate(Routes.PAYMENT) },
@@ -108,12 +103,12 @@ fun KkmNavHost(nav: NavHostController) {
             )
         }
 
-        // ── Shift management ──────────────────────────────────
+        // ââ Shift management ââââââââââââââââââââââââââââââââââ
         composable(Routes.SHIFT) {
             ShiftScreen(onBack = { nav.popBackStack() })
         }
 
-        // ── Payment ───────────────────────────────────────────
+        // ââ Payment âââââââââââââââââââââââââââââââââââââââââââ
         composable(Routes.PAYMENT) {
             PaymentScreen(
                 onPaymentComplete = { id -> nav.navigate(Routes.receiptDone(id)) { popUpTo(Routes.PAYMENT) { inclusive = true } } },
@@ -121,7 +116,7 @@ fun KkmNavHost(nav: NavHostController) {
             )
         }
 
-        // ── Receipt done (after payment) ──────────────────────
+        // ââ Receipt done (after payment) ââââââââââââââââââââââ
         composable(
             Routes.RECEIPT_DONE,
             arguments = listOf(navArgument("receiptId") { type = NavType.LongType })
@@ -134,7 +129,7 @@ fun KkmNavHost(nav: NavHostController) {
             )
         }
 
-        // ── Receipt detail (history / journal) ────────────────
+        // ââ Receipt detail (history / journal) ââââââââââââââââ
         composable(
             Routes.RECEIPT_DETAIL,
             arguments = listOf(navArgument("receiptId") { type = NavType.LongType })
@@ -143,12 +138,14 @@ fun KkmNavHost(nav: NavHostController) {
             ReceiptDetailScreen(receiptId = id, onBack = { nav.popBackStack() })
         }
 
-        // ── Returns ───────────────────────────────────────────
+        // ââ Returns âââââââââââââââââââââââââââââââââââââââââââ
         composable(Routes.RETURNS) {
-            ReturnsScreen(onBack = { nav.popBackStack() })
+            ReturnsScreen(
+                onReturnComplete = { nav.popBackStack() },
+                onBack = { nav.popBackStack() })
         }
 
-        // ── Reports ───────────────────────────────────────────
+        // ââ Reports âââââââââââââââââââââââââââââââââââââââââââ
         composable(Routes.REPORTS) {
             ReportsMenuScreen(
                 onOpenXReport = { nav.navigate("x_report") },
@@ -160,17 +157,17 @@ fun KkmNavHost(nav: NavHostController) {
             kz.kkm.ui.reports.XReportScreen(onBack = { nav.popBackStack() })
         }
 
-        // ── Catalog ───────────────────────────────────────────
+        // ââ Catalog âââââââââââââââââââââââââââââââââââââââââââ
         composable(Routes.CATALOG) {
             CatalogScreen(onBack = { nav.popBackStack() })
         }
 
-        // ── Tax 910 (multi-step) ──────────────────────────────
+        // ââ Tax 910 (multi-step) ââââââââââââââââââââââââââââââ
         composable(Routes.TAX_910) {
             Tax910NavHost(onBack = { nav.popBackStack() })
         }
 
-        // ── Settings ──────────────────────────────────────────
+        // ââ Settings ââââââââââââââââââââââââââââââââââââââââââ
         composable(Routes.SETTINGS) {
             SettingsScreen(onBack = { nav.popBackStack() })
         }
