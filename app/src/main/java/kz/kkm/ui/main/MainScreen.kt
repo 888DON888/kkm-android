@@ -33,7 +33,6 @@ import java.text.NumberFormat
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     onNavigateToPayment: () -> Unit,
@@ -72,9 +71,9 @@ fun MainScreen(
             TopAppBar(
                 title = {
                     Column {
-                        Text("ÐÐ°ÑÑÐ°", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                        Text("ÃÂÃÂ°ÃÂÃÂÃÂ°", fontWeight = FontWeight.Bold, fontSize = 18.sp)
                         Text(
-                            "Ð¡Ð¼ÐµÐ½Ð° â${state.shift!!.shiftNumber}",
+                            "ÃÂ¡ÃÂ¼ÃÂµÃÂ½ÃÂ° Ã¢ÂÂ${state.shift!!.shiftNumber}",
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
                         )
@@ -82,14 +81,14 @@ fun MainScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = { showDrawer = true }) {
-                        Icon(Icons.Default.Menu, contentDescription = "ÐÐµÐ½Ñ")
+                        Icon(Icons.Default.Menu, contentDescription = "ÃÂÃÂµÃÂ½ÃÂ")
                     }
                 },
                 actions = {
                     // OFD status indicator
                     OfdStatusBadge()
                     IconButton(onClick = { showBarcodeScanner = true }) {
-                        Icon(Icons.Default.QrCodeScanner, contentDescription = "Ð¡ÐºÐ°Ð½ÐµÑ")
+                        Icon(Icons.Default.QrCodeScanner, contentDescription = "ÃÂ¡ÃÂºÃÂ°ÃÂ½ÃÂµÃÂ")
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -110,7 +109,7 @@ fun MainScreen(
             .fillMaxSize()
             .padding(padding)) {
 
-            // âââ Left: Catalog / Search ââââââââââââââââââââââââââââ
+            // Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Left: Catalog / Search Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
             Column(
                 modifier = Modifier
                     .weight(1f)
@@ -121,7 +120,7 @@ fun MainScreen(
                 OutlinedTextField(
                     value = state.searchQuery,
                     onValueChange = viewModel::onSearchQuery,
-                    placeholder = { Text("ÐÐ¾Ð¸ÑÐº ÑÐ¾Ð²Ð°ÑÐ¾Ð² Ð¸Ð»Ð¸ ÑÑÑÐ¸ÑÐºÐ¾Ð´...") },
+                    placeholder = { Text("ÃÂÃÂ¾ÃÂ¸ÃÂÃÂº ÃÂÃÂ¾ÃÂ²ÃÂ°ÃÂÃÂ¾ÃÂ² ÃÂ¸ÃÂ»ÃÂ¸ ÃÂÃÂÃÂÃÂ¸ÃÂÃÂºÃÂ¾ÃÂ´...") },
                     leadingIcon = { Icon(Icons.Default.Search, null) },
                     trailingIcon = {
                         if (state.searchQuery.isNotEmpty()) {
@@ -151,7 +150,7 @@ fun MainScreen(
                     }
                 } else {
                     // Favorites grid
-                    Text("ÐÐ·Ð±ÑÐ°Ð½Ð½Ð¾Ðµ",
+                    Text("ÃÂÃÂ·ÃÂ±ÃÂÃÂ°ÃÂ½ÃÂ½ÃÂ¾ÃÂµ",
                         style = MaterialTheme.typography.labelMedium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                         modifier = Modifier.padding(vertical = 4.dp))
@@ -176,7 +175,7 @@ fun MainScreen(
 
             Divider(modifier = Modifier.fillMaxHeight().width(1.dp))
 
-            // âââ Right: Cart âââââââââââââââââââââââââââââââââââââââ
+            // Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂ Right: Cart Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
             Column(
                 modifier = Modifier
                     .width(320.dp)
@@ -184,12 +183,12 @@ fun MainScreen(
                     .background(MaterialTheme.colorScheme.surfaceVariant)
                     .padding(12.dp)
             ) {
-                Text("Ð§ÐµÐº", style = MaterialTheme.typography.titleMedium,
+                Text("ÃÂ§ÃÂµÃÂº", style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(bottom = 8.dp))
 
                 if (state.cart.isEmpty()) {
                     Box(Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                        Text("ÐÐ¾Ð±Ð°Ð²ÑÑÐµ ÑÐ¾Ð²Ð°ÑÑ", color = MaterialTheme.colorScheme.onSurface.copy(0.4f))
+                        Text("ÃÂÃÂ¾ÃÂ±ÃÂ°ÃÂ²ÃÂÃÂÃÂµ ÃÂÃÂ¾ÃÂ²ÃÂ°ÃÂÃÂ", color = MaterialTheme.colorScheme.onSurface.copy(0.4f))
                     }
                 } else {
                     LazyColumn(
@@ -210,13 +209,13 @@ fun MainScreen(
 
                 // Totals
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text("ÐÐÐ¡:", style = MaterialTheme.typography.bodyMedium,
+                    Text("ÃÂÃÂÃÂ¡:", style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface.copy(0.6f))
                     Text(formatTenge(state.cartVat.toLong()),
                         style = MaterialTheme.typography.bodyMedium)
                 }
                 Row(modifier = Modifier.fillMaxWidth().padding(top = 4.dp), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text("ÐÐ¢ÐÐÐ:", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+                    Text("ÃÂÃÂ¢ÃÂÃÂÃÂ:", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
                     Text(formatTenge(state.cartTotal.toLong()),
                         style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold,
                         color = KkmBlue)
@@ -234,7 +233,7 @@ fun MainScreen(
                 ) {
                     Icon(Icons.Default.Payment, contentDescription = null)
                     Spacer(Modifier.width(8.dp))
-                    Text("ÐÐÐÐÐ¢ÐÐ¢Ð¬", fontWeight = FontWeight.Bold, fontSize = 16.sp)
+                    Text("ÃÂÃÂÃÂÃÂÃÂ¢ÃÂÃÂ¢ÃÂ¬", fontWeight = FontWeight.Bold, fontSize = 16.sp)
                 }
 
                 TextButton(
@@ -242,7 +241,7 @@ fun MainScreen(
                     enabled = state.cart.isNotEmpty(),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("ÐÑÐ¸ÑÑÐ¸ÑÑ ÑÐµÐº", color = KkmRed)
+                    Text("ÃÂÃÂÃÂ¸ÃÂÃÂÃÂ¸ÃÂÃÂ ÃÂÃÂµÃÂº", color = KkmRed)
                 }
             }
         }
@@ -281,9 +280,9 @@ private fun ShiftClosedPlaceholder(isLoading: Boolean, onOpenShift: () -> Unit) 
             Icon(Icons.Default.LockOpen, contentDescription = null,
                 tint = Color.White, modifier = Modifier.size(72.dp))
             Spacer(Modifier.height(24.dp))
-            Text("Ð¡Ð¼ÐµÐ½Ð° Ð·Ð°ÐºÑÑÑÐ°", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
+            Text("ÃÂ¡ÃÂ¼ÃÂµÃÂ½ÃÂ° ÃÂ·ÃÂ°ÃÂºÃÂÃÂÃÂÃÂ°", color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold)
             Spacer(Modifier.height(8.dp))
-            Text("ÐÑÐºÑÐ¾Ð¹ÑÐµ ÑÐ¼ÐµÐ½Ñ Ð´Ð»Ñ Ð½Ð°ÑÐ°Ð»Ð° ÑÐ°Ð±Ð¾ÑÑ",
+            Text("ÃÂÃÂÃÂºÃÂÃÂ¾ÃÂ¹ÃÂÃÂµ ÃÂÃÂ¼ÃÂµÃÂ½ÃÂ ÃÂ´ÃÂ»ÃÂ ÃÂ½ÃÂ°ÃÂÃÂ°ÃÂ»ÃÂ° ÃÂÃÂ°ÃÂ±ÃÂ¾ÃÂÃÂ",
                 color = Color.White.copy(0.7f), fontSize = 14.sp)
             Spacer(Modifier.height(32.dp))
             Button(
@@ -294,7 +293,7 @@ private fun ShiftClosedPlaceholder(isLoading: Boolean, onOpenShift: () -> Unit) 
                 shape = RoundedCornerShape(12.dp)
             ) {
                 if (isLoading) CircularProgressIndicator(modifier = Modifier.size(20.dp), color = KkmBlue)
-                else Text("ÐÑÐºÑÑÑÑ ÑÐ¼ÐµÐ½Ñ", color = KkmBlue, fontWeight = FontWeight.Bold)
+                else Text("ÃÂÃÂÃÂºÃÂÃÂÃÂÃÂ ÃÂÃÂ¼ÃÂµÃÂ½ÃÂ", color = KkmBlue, fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -333,7 +332,7 @@ private fun AddManualCard(onClick: () -> Unit) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Icon(Icons.Default.Add, null, tint = KkmBlue, modifier = Modifier.size(28.dp))
-                Text("ÐÑÑÑÐ½ÑÑ", style = MaterialTheme.typography.labelSmall, color = KkmBlue)
+                Text("ÃÂÃÂÃÂÃÂÃÂ½ÃÂÃÂ", style = MaterialTheme.typography.labelSmall, color = KkmBlue)
             }
         }
     }
@@ -353,7 +352,7 @@ private fun SearchResultItem(name: String, price: String, unit: String, onClick:
         ) {
             Text(name, modifier = Modifier.weight(1f),
                 style = MaterialTheme.typography.bodyMedium, maxLines = 1, overflow = TextOverflow.Ellipsis)
-            Text("$price â¸/$unit",
+            Text("$price Ã¢ÂÂ¸/$unit",
                 style = MaterialTheme.typography.labelMedium,
                 fontWeight = FontWeight.Bold, color = KkmBlue)
         }
@@ -409,10 +408,11 @@ private fun OfdStatusBadge() {
             .background(KkmGreen.copy(alpha = 0.2f))
             .padding(horizontal = 8.dp, vertical = 4.dp)
     ) {
-        Text("ÐÐ¤Ð â", fontSize = 11.sp, color = KkmGreen, fontWeight = FontWeight.Bold)
+        Text("ÃÂÃÂ¤ÃÂ Ã¢ÂÂ", fontSize = 11.sp, color = KkmGreen, fontWeight = FontWeight.Bold)
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun KkmDrawer(
     shift: Shift,
@@ -427,17 +427,17 @@ private fun KkmDrawer(
 ) {
     androidx.compose.material3.ModalBottomSheet(onDismissRequest = onClose) {
         Column(modifier = Modifier.padding(16.dp)) {
-            Text("ÐÐµÐ½Ñ", style = MaterialTheme.typography.titleLarge,
+            Text("ÃÂÃÂµÃÂ½ÃÂ", style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.padding(bottom = 16.dp))
-            DrawerItem(Icons.Default.Undo, "ÐÐ¾Ð·Ð²ÑÐ°Ñ ÑÐ¾Ð²Ð°ÑÐ°", onReturns)
-            DrawerItem(Icons.Default.BarChart, "X-Ð¾ÑÑÑÑ", onXReport)
-            DrawerItem(Icons.Default.AssignmentTurnedIn, "ÐÐ°ÐºÑÑÑÑ ÑÐ¼ÐµÐ½Ñ (Z-Ð¾ÑÑÑÑ)", onZReport)
-            DrawerItem(Icons.Default.History, "ÐÑÑÐ½Ð°Ð» Ð¾Ð¿ÐµÑÐ°ÑÐ¸Ð¹", onJournal)
-            DrawerItem(Icons.Default.Inventory, "ÐÐ°ÑÐ°Ð»Ð¾Ð³ ÑÐ¾Ð²Ð°ÑÐ¾Ð²", onCatalog)
+            DrawerItem(Icons.Default.Undo, "ÃÂÃÂ¾ÃÂ·ÃÂ²ÃÂÃÂ°ÃÂ ÃÂÃÂ¾ÃÂ²ÃÂ°ÃÂÃÂ°", onReturns)
+            DrawerItem(Icons.Default.BarChart, "X-ÃÂ¾ÃÂÃÂÃÂÃÂ", onXReport)
+            DrawerItem(Icons.Default.AssignmentTurnedIn, "ÃÂÃÂ°ÃÂºÃÂÃÂÃÂÃÂ ÃÂÃÂ¼ÃÂµÃÂ½ÃÂ (Z-ÃÂ¾ÃÂÃÂÃÂÃÂ)", onZReport)
+            DrawerItem(Icons.Default.History, "ÃÂÃÂÃÂÃÂ½ÃÂ°ÃÂ» ÃÂ¾ÃÂ¿ÃÂµÃÂÃÂ°ÃÂÃÂ¸ÃÂ¹", onJournal)
+            DrawerItem(Icons.Default.Inventory, "ÃÂÃÂ°ÃÂÃÂ°ÃÂ»ÃÂ¾ÃÂ³ ÃÂÃÂ¾ÃÂ²ÃÂ°ÃÂÃÂ¾ÃÂ²", onCatalog)
             Divider(modifier = Modifier.padding(vertical = 8.dp))
-            DrawerItem(Icons.Default.AccountBalance, "ÐÐ°Ð»Ð¾Ð³Ð¾Ð²Ð°Ñ Ð¾ÑÑÑÑÐ½Ð¾ÑÑÑ 910.00", onTax910)
+            DrawerItem(Icons.Default.AccountBalance, "ÃÂÃÂ°ÃÂ»ÃÂ¾ÃÂ³ÃÂ¾ÃÂ²ÃÂ°ÃÂ ÃÂ¾ÃÂÃÂÃÂÃÂÃÂ½ÃÂ¾ÃÂÃÂÃÂ 910.00", onTax910)
             Divider(modifier = Modifier.padding(vertical = 8.dp))
-            DrawerItem(Icons.Default.Settings, "ÐÐ°ÑÑÑÐ¾Ð¹ÐºÐ¸", onSettings)
+            DrawerItem(Icons.Default.Settings, "ÃÂÃÂ°ÃÂÃÂÃÂÃÂ¾ÃÂ¹ÃÂºÃÂ¸", onSettings)
             Spacer(Modifier.height(32.dp))
         }
     }
@@ -471,18 +471,18 @@ private fun ManualItemDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("ÐÐ¾Ð±Ð°Ð²Ð¸ÑÑ ÑÐ¾Ð²Ð°Ñ Ð²ÑÑÑÐ½ÑÑ") },
+        title = { Text("ÃÂÃÂ¾ÃÂ±ÃÂ°ÃÂ²ÃÂ¸ÃÂÃÂ ÃÂÃÂ¾ÃÂ²ÃÂ°ÃÂ ÃÂ²ÃÂÃÂÃÂÃÂ½ÃÂÃÂ") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(value = name, onValueChange = { name = it },
-                    label = { Text("ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ*") }, singleLine = true,
+                    label = { Text("ÃÂÃÂ°ÃÂ¸ÃÂ¼ÃÂµÃÂ½ÃÂ¾ÃÂ²ÃÂ°ÃÂ½ÃÂ¸ÃÂµ*") }, singleLine = true,
                     modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(value = price, onValueChange = { price = it },
-                    label = { Text("Ð¦ÐµÐ½Ð°, â¸*") }, singleLine = true,
+                    label = { Text("ÃÂ¦ÃÂµÃÂ½ÃÂ°, Ã¢ÂÂ¸*") }, singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(value = qty, onValueChange = { qty = it },
-                    label = { Text("ÐÐ¾Ð»Ð¸ÑÐµÑÑÐ²Ð¾") }, singleLine = true,
+                    label = { Text("ÃÂÃÂ¾ÃÂ»ÃÂ¸ÃÂÃÂµÃÂÃÂÃÂ²ÃÂ¾") }, singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth())
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -491,7 +491,7 @@ private fun ManualItemDialog(
                             vatRate = if (checked) kz.kkm.domain.model.VatRate.VAT_12
                                       else kz.kkm.domain.model.VatRate.NONE
                         })
-                    Text("ÐÐÐ¡ 12%")
+                    Text("ÃÂÃÂÃÂ¡ 12%")
                 }
             }
         },
@@ -502,14 +502,14 @@ private fun ManualItemDialog(
                     val q = qty.toBigDecimalOrNull() ?: java.math.BigDecimal.ONE
                     if (name.isNotBlank()) onConfirm(name, p, q, vatRate)
                 }
-            ) { Text("ÐÐ¾Ð±Ð°Ð²Ð¸ÑÑ") }
+            ) { Text("ÃÂÃÂ¾ÃÂ±ÃÂ°ÃÂ²ÃÂ¸ÃÂÃÂ") }
         },
         dismissButton = {
-            TextButton(onClick = onDismiss) { Text("ÐÑÐ¼ÐµÐ½Ð°") }
+            TextButton(onClick = onDismiss) { Text("ÃÂÃÂÃÂ¼ÃÂµÃÂ½ÃÂ°") }
         }
     )
 }
 
 fun formatTenge(amount: Long): String {
-    return NumberFormat.getNumberInstance(Locale("ru", "KZ")).format(amount) + " â¸"
+    return NumberFormat.getNumberInstance(Locale("ru", "KZ")).format(amount) + " Ã¢ÂÂ¸"
 }
