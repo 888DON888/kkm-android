@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ҚКМ Онлайн касса</string>
+
+    <!-- Auth -->
+    <string name="auth_title">Жүйеге кіру</string>
+    <string name="auth_enter_pin">PIN-кодты енгізіңіз</string>
+    <string name="auth_wrong_pin">Қате PIN-код</string>
+    <string name="auth_biometric">Биометриялық кіру</string>
+
+    <!-- Shift -->
+    <string name="shift_open">Ауысымды ашу</string>
+    <string name="shift_close">Ауысымды жабу</string>
+    <string name="shift_number">Ауысым №%d</string>
+    <string name="no_open_shift">Ашық ауысым жоқ</string>
+
+    <!-- Receipt -->
+    <string name="receipt_number">Чек №%d</string>
+    <string name="receipt_total">БАРЛЫҒЫ</string>
+    <string name="receipt_payment_cash">Қолма-қол</string>
+    <string name="receipt_payment_card">Қолма-қолсыз</string>
+    <string name="receipt_change">Сдача</string>
+
+    <!-- Cart -->
+    <string name="cart_empty">Себет бос</string>
+    <string name="cart_add_item">Тауар қосу</string>
+    <string name="cart_total">Жалпы сомасы</string>
+
+    <!-- Tax 910 -->
+    <string name="tax910_title">910.00 Декларация</string>
+    <string name="tax910_period">Кезең</string>
+    <string name="tax910_income">Табыс</string>
+    <string name="tax910_employees">Қызметкерлер</string>
+    <string name="tax910_submit">ИСНА-ға жіберу</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Параметрлер</string>
+    <string name="settings_org">Ұйым</string>
+    <string name="settings_ofd">ОФД баптаулары</string>
+    <string name="settings_language">Тіл</string>
+    <string name="settings_security">Қауіпсіздік</string>
+
+    <!-- Common -->
+    <string name="ok">Жарайды</string>
+    <string name="cancel">Болдырмау</string>
+    <string name="save">Сақтау</string>
+    <string name="back">Артқа</string>
+    <string name="loading">Жүктелуде…</string>
+    <string name="error_generic">Қате орын алды</string>
+    <string name="currency_symbol">₸</string>
+</resources>
