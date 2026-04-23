@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.ViewModel
@@ -80,7 +81,7 @@ fun CatalogScreen(onBack: () -> Unit, viewModel: CatalogViewModel = hiltViewMode
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Каталог товаров") },
+                title = { Text("ÐÐ°ÑÐ°Ð»Ð¾Ð³ ÑÐ¾Ð²Ð°ÑÐ¾Ð²") },
                 navigationIcon = { IconButton(onClick = onBack) { Icon(Icons.Default.ArrowBack, null) } },
                 colors = TopAppBarDefaults.topAppBarColors(containerColor = KkmBlue,
                     titleContentColor = Color.White, navigationIconContentColor = Color.White)
@@ -96,7 +97,7 @@ fun CatalogScreen(onBack: () -> Unit, viewModel: CatalogViewModel = hiltViewMode
             OutlinedTextField(
                 value = query,
                 onValueChange = { query = it; viewModel.onQuery(it) },
-                placeholder = { Text("Поиск по названию или штрихкоду") },
+                placeholder = { Text("ÐÐ¾Ð¸ÑÐº Ð¿Ð¾ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ñ Ð¸Ð»Ð¸ ÑÑÑÐ¸ÑÐºÐ¾Ð´Ñ") },
                 leadingIcon = { Icon(Icons.Default.Search, null) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -116,7 +117,7 @@ fun CatalogScreen(onBack: () -> Unit, viewModel: CatalogViewModel = hiltViewMode
                                 Text("${formatTenge(item.price.toLong())} / ${item.unit}",
                                     fontSize = 13.sp, color = KkmBlue)
                                 if (item.vatRate == VatRate.VAT_12) {
-                                    Text("НДС 12%", fontSize = 11.sp, color = Color.Gray)
+                                    Text("ÐÐÐ¡ 12%", fontSize = 11.sp, color = Color.Gray)
                                 }
                             }
                             IconButton(onClick = { viewModel.toggleFavorite(item) }) {
@@ -156,31 +157,31 @@ private fun AddCatalogItemDialog(
     var name    by remember { mutableStateOf("") }
     var barcode by remember { mutableStateOf("") }
     var price   by remember { mutableStateOf("") }
-    var unit    by remember { mutableStateOf("шт") }
+    var unit    by remember { mutableStateOf("ÑÑ") }
     var vatRate by remember { mutableStateOf(VatRate.NONE) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Добавить товар") },
+        title = { Text("ÐÐ¾Ð±Ð°Ð²Ð¸ÑÑ ÑÐ¾Ð²Ð°Ñ") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 OutlinedTextField(value = name, onValueChange = { name = it },
-                    label = { Text("Наименование*") }, singleLine = true,
+                    label = { Text("ÐÐ°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ*") }, singleLine = true,
                     modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(value = barcode, onValueChange = { barcode = it },
-                    label = { Text("Штрихкод (необязательно)") }, singleLine = true,
+                    label = { Text("Ð¨ÑÑÐ¸ÑÐºÐ¾Ð´ (Ð½ÐµÐ¾Ð±ÑÐ·Ð°ÑÐµÐ»ÑÐ½Ð¾)") }, singleLine = true,
                     modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(value = price, onValueChange = { price = it },
-                    label = { Text("Цена, ₸*") }, singleLine = true,
+                    label = { Text("Ð¦ÐµÐ½Ð°, â¸*") }, singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
                     modifier = Modifier.fillMaxWidth())
                 OutlinedTextField(value = unit, onValueChange = { unit = it },
-                    label = { Text("Единица измерения") }, singleLine = true,
+                    label = { Text("ÐÐ´Ð¸Ð½Ð¸ÑÐ° Ð¸Ð·Ð¼ÐµÑÐµÐ½Ð¸Ñ") }, singleLine = true,
                     modifier = Modifier.fillMaxWidth())
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Checkbox(checked = vatRate == VatRate.VAT_12,
                         onCheckedChange = { v -> vatRate = if (v) VatRate.VAT_12 else VatRate.NONE })
-                    Text("НДС 12%")
+                    Text("ÐÐÐ¡ 12%")
                 }
             }
         },
@@ -188,8 +189,8 @@ private fun AddCatalogItemDialog(
             TextButton(onClick = {
                 val p = price.toBigDecimalOrNull() ?: return@TextButton
                 if (name.isNotBlank()) onConfirm(name, barcode.ifBlank { null }, p, unit, vatRate)
-            }) { Text("Сохранить") }
+            }) { Text("Ð¡Ð¾ÑÑÐ°Ð½Ð¸ÑÑ") }
         },
-        dismissButton = { TextButton(onClick = onDismiss) { Text("Отмена") } }
+        dismissButton = { TextButton(onClick = onDismiss) { Text("ÐÑÐ¼ÐµÐ½Ð°") } }
     )
 }
