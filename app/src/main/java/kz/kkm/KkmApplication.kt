@@ -1,7 +1,6 @@
 package kz.kkm
 
 import android.app.Application
-import android.content.Context
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
 import dagger.hilt.android.HiltAndroidApp
@@ -21,7 +20,10 @@ class KkmApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        // Load SQLCipher native libs
-        net.sqlcipher.database.SQLiteDatabase.loadLibs(this)
+        // Load SQLCipher native libs only in release builds
+        // (debug builds use plain sqlite for emulator compatibility)
+        if (!BuildConfig.DEBUG) {
+            net.sqlcipher.database.SQLiteDatabase.loadLibs(this)
+        }
     }
 }
