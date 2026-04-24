@@ -18,6 +18,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
 
+        ndk {
+            abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+        }
+
         // Room schema export
         ksp { arg("room.schemaLocation", "$projectDir/schemas") }
     }
@@ -30,7 +34,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Certificate pinning â replace with real OFD + ISNA pins
+            // Certificate pinning Ã¢ÂÂ replace with real OFD + ISNA pins
             buildConfigField("String", "OFD_BASE_URL", "\"https://ofd.kgd.gov.kz/api/v2/\"")
             buildConfigField("String", "ISNA_BASE_URL", "\"https://is.kgd.gov.kz/api/v1/\"")
             buildConfigField("String", "OFD_PIN_SHA256", "\"sha256/REPLACE_WITH_REAL_OFD_CERT_HASH=\"")
