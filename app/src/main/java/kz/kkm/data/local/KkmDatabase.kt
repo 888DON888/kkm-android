@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.sqlite.db.SupportSQLiteOpenHelper
 import kz.kkm.BuildConfig
 import kz.kkm.data.local.dao.*
 import kz.kkm.data.local.entity.*
@@ -39,44 +40,33 @@ abstract class KkmDatabase : RoomDatabase() {
         fun create(context: Context, passphrase: ByteArray): KkmDatabase {
             val builder = Room.databaseBuilder(context, KkmDatabase::class.java, DB_NAME)
                 .fallbackToDestructiveMigration()
-
             if (!BuildConfig.DEBUG) {
-                // Release: use SQLCipher AES-256 encryption
-                val factory = net.sqlcipher.database.SupportFactory(
-                    net.sqlcipher.database.SQLiteDatabase.getBytes(
-                        String(passphrase, Charsets.UTF_8).toCharArray()
-                    )
-                )
-                builder.openHelperFactory(factory)
+                createSqlCipherFactory(passphrase)?.let { builder.openHelperFactory(it) }
             }
-            // Debug: plain unencrypted DB (no native .so needed, works in all emulators)
-
             return builder.build()
         }
+
+        @Suppress("UNCHECKED_CAST")
+        private fun createSqlCipherFactory(passphrase: ByteArray): SupportSQLiteOpenHelper.Factory? = try {
+            val dbCls = Class.forName("net.sqlcipher.database.SQLiteDatabase")
+            val key = dbCls.getMethod("getBytes", CharArray::class.java)
+                .invoke(null, String(passphrase, Charsets.UTF_8).toCharArray()) as ByteArray
+            Class.forName("net.sqlcipher.database.SupportFactory")
+                .getConstructor(ByteArray::class.java).newInstance(key) as SupportSQLiteOpenHelper.Factory
+        } catch (e: Exception) { null }
     }
 }
 
-/**
- * Provides the database encryption passphrase.
- * Passphrase = PBKDF2(user_pin, device_id_salt) stored in Android Keystore.
- */
 @Singleton
-class DatabasePassphraseProvider @Inject constructor(
-    private val context: Context
-) {
-    private val prefs by lazy {
-        context.getSharedPreferences("kkm_secure", Context.MODE_PRIVATE)
-    }
+class DatabasePassphraseProvider @Inject constructor(private val context: Context) {
+    private val prefs by lazy { context.getSharedPreferences("kkm_secure", Context.MODE_PRIVATE) }
 
     fun getOrCreatePassphrase(): ByteArray {
-        val key = "db_pass"
-        val existing = prefs.getString(key, null)
+        val existing = prefs.getString("db_pass", null)
         if (existing != null) return existing.toByteArray()
-        // Generate random 32-byte passphrase
-        val bytes = ByteArray(32)
-        java.security.SecureRandom().nextBytes(bytes)
+        val bytes = ByteArray(32).also { java.security.SecureRandom().nextBytes(it) }
         val encoded = android.util.Base64.encodeToString(bytes, android.util.Base64.NO_WRAP)
-        prefs.edit().putString(key, encoded).apply()
+        prefs.edit().putString("db_pass", encoded).apply()
         return encoded.toByteArray()
     }
 }
