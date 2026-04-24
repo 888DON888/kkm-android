@@ -20,10 +20,10 @@ class KkmApplication : Application(), Configuration.Provider {
 
     override fun onCreate() {
         super.onCreate()
-        // Load SQLCipher native libs only in release builds
-        // (debug builds use plain sqlite for emulator compatibility)
-        if (!BuildConfig.DEBUG) {
-            net.sqlcipher.database.SQLiteDatabase.loadLibs(this)
-        }
+        // SQLCipher loaded via reflection so debug build works without the dep
+        try {
+            val cls = Class.forName("net.sqlcipher.database.SQLiteDatabase")
+            cls.getMethod("loadLibs", android.content.Context::class.java).invoke(null, this)
+        } catch (e: ClassNotFoundException) { /* debug: plain sqlite */ }
     }
 }
