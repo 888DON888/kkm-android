@@ -54,6 +54,7 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 
 # SQLCipher
 sqlcipher = { group = "net.zetetic", name = "android-database-sqlcipher", version.ref = "sqlcipher" }
+sqlite-framework = { group = "androidx.sqlite", name = "sqlite-framework", version = "2.4.0" }
 sqlite-ktx = { group = "androidx.sqlite", name = "sqlite-ktx", version = "2.4.0" }
 
 # Network
