@@ -26,6 +26,12 @@ android {
         ksp { arg("room.schemaLocation", "$projectDir/schemas") }
     }
 
+    packaging {
+        jniLibs {
+            pickFirsts += setOf("**/*.so")
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -34,7 +40,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            // Certificate pinning Ã¢ÂÂ replace with real OFD + ISNA pins
+            // Certificate pinning ÃÂ¢ÃÂÃÂ replace with real OFD + ISNA pins
             buildConfigField("String", "OFD_BASE_URL", "\"https://ofd.kgd.gov.kz/api/v2/\"")
             buildConfigField("String", "ISNA_BASE_URL", "\"https://is.kgd.gov.kz/api/v1/\"")
             buildConfigField("String", "OFD_PIN_SHA256", "\"sha256/REPLACE_WITH_REAL_OFD_CERT_HASH=\"")
@@ -93,7 +99,9 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
-    implementation(libs.sqlcipher)
+    releaseImplementation(libs.sqlcipher)
+    // debug uses plain sqlite (no native .so needed — works in all emulators)
+    debugImplementation(libs.sqlite.framework)
     implementation(libs.sqlite.ktx)
 
     // Network
